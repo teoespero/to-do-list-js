@@ -56,21 +56,18 @@
 							</td>
 						</tr>
 						<tr>
-							<td>
-								<input type="text" id="whatToMark">
-							</td>
-							<td colspan="2">
-								<button id="markAsDone" class="btn btn-default ">
-									<i class="fas fa-check"></i> Mark As Done
-								</button>
+							<td colspan="3">
+								<label>Row # </label> 
+								<input type="text" id="whatToMark" size="20">
 							</td>
 						</tr>
 						<tr>
-							<td>
-								<input type="text" id="whatToDelete">
-							</td>
-							<td colspan="2">
-								<button id="removeItem" class="btn btn-default">
+							<td colspan="3">
+								<button id="markAsDone" class="btn btn-default ">
+									<i class="fas fa-check"></i> Mark As Done
+								</button>
+
+							<button id="removeItem" class="btn btn-default">
 									<i class="fas fa-trash-alt"></i>  Remove Item
 								</button>
 							</td>
@@ -82,7 +79,7 @@
 				<div class="col-lg-4 col-sm-6">
 					<table class="table table-hover" id="myList">
 						<tr>
-							<th><label>#</label></th>
+							<th><label></label></th>
 							<th><label>Event</label></th>
 							<th><label>Date</label></th>
 							<th><label>Location</label></th>
@@ -109,7 +106,7 @@
 
 				itemNumber++;
 				// alert(currentRow);
-				cell1.innerHTML = itemNumber;
+				// cell1.innerHTML = itemNumber;
 				cell2.innerHTML = document.getElementById('whatToDo').value;
     			cell3.innerHTML = document.getElementById('whenToDo').value;
     			cell4.innerHTML = document.getElementById('whereToDo').value;
@@ -122,10 +119,10 @@
 
 			document.getElementById("removeItem").addEventListener("click", function(){
 
-				var theRow = document.getElementById('whatToDelete').value;
+				var theRow = document.getElementById('whatToMark').value;
 
 				document.getElementById("myList").deleteRow(theRow);
-				document.getElementById('whatToDelete').value = "";
+				document.getElementById('whatToMark').value = "";
 				currentRow--;
 				itemNumber--;
 			});
