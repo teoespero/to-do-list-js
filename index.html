@@ -26,51 +26,118 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-4 col-sm-6">
-					<form>
-						<table class="table table-hover">
-							<tr>
-								<td colspan="3">
-									<h1>To Do List Example</h1>
-								</td>
-							</tr>
-							<tr>
-								<th><label>Item</label></th>
-								<th><label>Date</label></th>
-								<th><label>Location</label></th>
-							</tr>
-							<tr>
-								<td>
-									<input type="text" id="whatToDo">
-								</td>
-								<td>
-									<input type="date" id="whenToDo">
-								</td>
-								<td>
-									<input type="text" id="whereToDo">
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<button id="addItem">
-										Add Item
-									</button>
-								</td>
-								<td></td>
-								<td>
-									<button id="removeItem">
-										Remove Item
-									</button>
-								</td>
-							</tr>
-						</table>
-					</form>
-					</div>
-					<ol id="myToDoList">
-					</ol>
+					<table class="table table-hover">
+						<tr>
+							<td colspan="3">
+								<h1>To Do List Example</h1>
+							</td>
+						</tr>
+						<tr>
+							<th><label>Item</label></th>
+							<th><label>Date</label></th>
+							<th><label>Location</label></th>
+						</tr>
+						<tr>
+							<td>
+								<input type="text" id="whatToDo">
+							</td>
+							<td>
+								<input type="date" id="whenToDo">
+							</td>
+							<td>
+								<input type="text" id="whereToDo">
+							</td>
+						</tr>
+						<tr>
+							<td colpsan="3">
+								<button id="addItem" class="btn btn-default btn-primary active">
+									<i class="fas fa-plus"></i>  Add This Item
+								</button>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="text" id="whatToMark">
+							</td>
+							<td colspan="2">
+								<button id="markAsDone" class="btn btn-default ">
+									<i class="fas fa-check"></i> Mark As Done
+								</button>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="text" id="whatToDelete">
+							</td>
+							<td colspan="2">
+								<button id="removeItem" class="btn btn-default">
+									<i class="fas fa-trash-alt"></i>  Remove Item
+								</button>
+							</td>
+						</tr>
+					</table>
 				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-4 col-sm-6">
+					<table class="table table-hover" id="myList">
+						<tr>
+							<th><label>#</label></th>
+							<th><label>Event</label></th>
+							<th><label>Date</label></th>
+							<th><label>Location</label></th>
+						</tr>
+					</table>
+				</div>
+			</div>
 		</div>
 		<script type="text/javascript">
 
+			
+			var itemNumber = 0
+			var currentRow = 0;
+			document.getElementById("addItem").addEventListener("click", function(){
+
+				currentRow++;
+
+				var table = document.getElementById('myList');
+				var row = table.insertRow(currentRow);
+				var cell1 = row.insertCell(0);
+				var cell2 = row.insertCell(1);
+				var cell3 = row.insertCell(2);
+				var cell4 = row.insertCell(3);
+
+				itemNumber++;
+				// alert(currentRow);
+				cell1.innerHTML = itemNumber;
+				cell2.innerHTML = document.getElementById('whatToDo').value;
+    			cell3.innerHTML = document.getElementById('whenToDo').value;
+    			cell4.innerHTML = document.getElementById('whereToDo').value;
+
+    			document.getElementById('whatToDo').value = "";
+    			document.getElementById('whenToDo').value = "";
+    			document.getElementById('whereToDo').value = "";
+			});
+
+
+			document.getElementById("removeItem").addEventListener("click", function(){
+
+				var theRow = document.getElementById('whatToDelete').value;
+
+				document.getElementById("myList").deleteRow(theRow);
+				document.getElementById('whatToDelete').value = "";
+			});
+
+			document.getElementById("markAsDone").addEventListener("click", function(){
+
+				var theRow = document.getElementById('whatToMark').value;
+
+				var table = document.getElementById('myList');
+
+				table.rows[theRow].style.setProperty("text-decoration", "line-through");
+				document.getElementById('whatToMark').value = "";
+
+			});
 		</script>
 	</body>
 </html>
