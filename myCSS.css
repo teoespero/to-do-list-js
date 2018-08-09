@@ -1,0 +1,33 @@
+body {
+	text-align: center;
+	font-family: 'Raleway', sans-serif;
+}
+
+h1 {
+	font-weight: bolder;
+	font-size: 2em;
+}
+
+.thumbnail {
+    border: 0 none;
+    box-shadow: none;
+}
+
+#jumbo {
+  padding: 5px;
+}
+
+.padded {
+  padding: 5px;
+}
+
+button{
+  margin: 8px;
+}
+
+.table2 {
+    border-radius: 5px;
+    width: 50%;
+    margin: 0px auto;
+    float: none;
+}
