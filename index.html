@@ -73,6 +73,7 @@
 							</td>
 						</tr>
 					</table>
+					<p id="warningLabel"></p>
 				</div>
 			</div>
 			<div class="row">
@@ -121,10 +122,16 @@
 
 				var theRow = document.getElementById('whatToMark').value;
 
-				document.getElementById("myList").deleteRow(theRow);
-				document.getElementById('whatToMark').value = "";
-				currentRow--;
-				itemNumber--;
+				if (currentRow > 0){
+
+					document.getElementById("myList").deleteRow(theRow);
+					document.getElementById('whatToMark').value = "";
+					currentRow--;
+					itemNumber--;
+				}
+				else {
+					document.getElementById('warningLabel').innerHTML = "Nothing to remove."
+				}
 			});
 
 			document.getElementById("markAsDone").addEventListener("click", function(){
