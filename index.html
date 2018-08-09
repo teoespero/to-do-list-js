@@ -93,6 +93,11 @@
 			
 			var itemNumber = 0
 			var currentRow = 0;
+
+			function theIndex(theRow){
+				alert(theRow);
+			}
+
 			document.getElementById("addItem").addEventListener("click", function(){
 
 				if (document.getElementById('whatToDo').value != ""){
@@ -111,6 +116,7 @@
 					cell2.innerHTML = document.getElementById('whatToDo').value;
 	    			cell3.innerHTML = document.getElementById('whenToDo').value;
 	    			cell4.innerHTML = document.getElementById('whereToDo').value;
+	    			row.addEventListener('click', theIndex.bind(null, currentRow));
 
 	    			document.getElementById('whatToDo').value = "";
 	    			document.getElementById('whenToDo').value = "";
@@ -143,6 +149,7 @@
 					document.getElementById('whatToMark').value = "";
 				}
 			});
+
 		</script>
 	</body>
 </html>
