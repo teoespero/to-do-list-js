@@ -39,17 +39,17 @@
 						</tr>
 						<tr>
 							<td>
-								<input type="text" id="whatToDo">
+								<input type="text" id="whatToDo" value="">
 							</td>
 							<td>
-								<input type="date" id="whenToDo">
+								<input type="date" id="whenToDo"  value="">
 							</td>
 							<td>
-								<input type="text" id="whereToDo">
+								<input type="text" id="whereToDo" value="">
 							</td>
 						</tr>
 						<tr>
-							<td colpsan="3">
+							<td colpsan="2">
 								<button id="addItem" class="btn btn-default btn-primary active">
 									<i class="fas fa-plus"></i>  Add This Item
 								</button>
@@ -58,7 +58,7 @@
 						<tr>
 							<td colspan="3">
 								<label>Row # </label> 
-								<input type="text" id="whatToMark" size="20">
+								<input type="text" id="whatToMark" size="20" value="">
 							</td>
 						</tr>
 						<tr>
@@ -73,7 +73,6 @@
 							</td>
 						</tr>
 					</table>
-					<p id="warningLabel"></p>
 				</div>
 			</div>
 			<div class="row">
@@ -96,25 +95,27 @@
 			var currentRow = 0;
 			document.getElementById("addItem").addEventListener("click", function(){
 
-				currentRow++;
+				if (document.getElementById('whatToDo').value != ""){
+					currentRow++;
 
-				var table = document.getElementById('myList');
-				var row = table.insertRow(currentRow);
-				var cell1 = row.insertCell(0);
-				var cell2 = row.insertCell(1);
-				var cell3 = row.insertCell(2);
-				var cell4 = row.insertCell(3);
+					var table = document.getElementById('myList');
+					var row = table.insertRow(currentRow);
+					var cell1 = row.insertCell(0);
+					var cell2 = row.insertCell(1);
+					var cell3 = row.insertCell(2);
+					var cell4 = row.insertCell(3);
 
-				itemNumber++;
-				// alert(currentRow);
-				// cell1.innerHTML = itemNumber;
-				cell2.innerHTML = document.getElementById('whatToDo').value;
-    			cell3.innerHTML = document.getElementById('whenToDo').value;
-    			cell4.innerHTML = document.getElementById('whereToDo').value;
+					itemNumber++;
+					// alert(currentRow);
+					// cell1.innerHTML = itemNumber;
+					cell2.innerHTML = document.getElementById('whatToDo').value;
+	    			cell3.innerHTML = document.getElementById('whenToDo').value;
+	    			cell4.innerHTML = document.getElementById('whereToDo').value;
 
-    			document.getElementById('whatToDo').value = "";
-    			document.getElementById('whenToDo').value = "";
-    			document.getElementById('whereToDo').value = "";
+	    			document.getElementById('whatToDo').value = "";
+	    			document.getElementById('whenToDo').value = "";
+	    			document.getElementById('whereToDo').value = "";
+    			}
 			});
 
 
@@ -122,15 +123,12 @@
 
 				var theRow = document.getElementById('whatToMark').value;
 
-				if (currentRow > 0){
+				if (theRow > 0){
 
 					document.getElementById("myList").deleteRow(theRow);
 					document.getElementById('whatToMark').value = "";
 					currentRow--;
 					itemNumber--;
-				}
-				else {
-					document.getElementById('warningLabel').innerHTML = "Nothing to remove."
 				}
 			});
 
@@ -139,10 +137,11 @@
 				var theRow = document.getElementById('whatToMark').value;
 
 				var table = document.getElementById('myList');
+				if (theRow != 0){
 
-				table.rows[theRow].style.setProperty("text-decoration", "line-through");
-				document.getElementById('whatToMark').value = "";
-
+					table.rows[theRow].style.setProperty("text-decoration", "line-through");
+					document.getElementById('whatToMark').value = "";
+				}
 			});
 		</script>
 	</body>
