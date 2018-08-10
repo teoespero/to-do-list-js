@@ -49,25 +49,18 @@
 							</td>
 						</tr>
 						<tr>
-							<td colpsan="2">
+							<td>
 								<button id="addItem" class="btn btn-default btn-primary active">
 									<i class="fas fa-plus"></i>  Add This Item
 								</button>
 							</td>
-						</tr>
-						<tr>
-							<td colspan="3">
-								<label>Row # </label> 
-								<input type="text" id="whatToMark" size="20" value="">
-							</td>
-						</tr>
-						<tr>
-							<td colspan="3">
+							<td>
 								<button id="markAsDone" class="btn btn-default ">
 									<i class="fas fa-check"></i> Mark As Done
 								</button>
-
-							<button id="removeItem" class="btn btn-default">
+							</td>
+							<td>
+								<button id="removeItem" class="btn btn-default">
 									<i class="fas fa-trash-alt"></i>  Remove Item
 								</button>
 							</td>
@@ -93,9 +86,10 @@
 			
 			var itemNumber = 0
 			var currentRow = 0;
+			var selectedRow = 0;
 
 			function theIndex(theRow){
-				alert(theRow);
+				selectedRow = theRow.rowIndex;
 			}
 
 			document.getElementById("addItem").addEventListener("click", function(){
@@ -116,7 +110,7 @@
 					cell2.innerHTML = document.getElementById('whatToDo').value;
 	    			cell3.innerHTML = document.getElementById('whenToDo').value;
 	    			cell4.innerHTML = document.getElementById('whereToDo').value;
-	    			row.addEventListener('click', theIndex.bind(null, currentRow));
+	    			row.addEventListener('click', theIndex.bind(null, null));
 
 	    			document.getElementById('whatToDo').value = "";
 	    			document.getElementById('whenToDo').value = "";
@@ -127,7 +121,9 @@
 
 			document.getElementById("removeItem").addEventListener("click", function(){
 
-				var theRow = document.getElementById('whatToMark').value;
+				// var theRow = document.getElementById('whatToMark').value;
+				var theRow = selectedRow;
+				alert("index: " +theRow + " elements: " + currentRow);
 
 				if (theRow > 0){
 
@@ -136,11 +132,15 @@
 					currentRow--;
 					itemNumber--;
 				}
+				selectedRow = 0;
 			});
 
 			document.getElementById("markAsDone").addEventListener("click", function(){
 
-				var theRow = document.getElementById('whatToMark').value;
+				// var theRow = document.getElementById('whatToMark').value;
+				var theRow = selectedRow;
+
+				alert("index: " +theRow + " elements: " + currentRow);
 
 				var table = document.getElementById('myList');
 				if (theRow != 0){
@@ -148,6 +148,8 @@
 					table.rows[theRow].style.setProperty("text-decoration", "line-through");
 					document.getElementById('whatToMark').value = "";
 				}
+
+				selectedRow = 0;
 			});
 
 		</script>
