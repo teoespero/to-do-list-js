@@ -33,7 +33,7 @@
 							</td>
 						</tr>
 						<tr>
-							<th><label>Item</label></th>
+							<th><label>Event</label></th>
 							<th><label>Date</label></th>
 							<th><label>Location</label></th>
 						</tr>
@@ -88,9 +88,9 @@
 			var currentRow = 0;
 			var selectedRow = 0;
 
-			function theIndex(theRow){
-				selectedRow = theRow;
-			}
+			// function theIndex(theRow){
+			// 	selectedRow = theRow;
+			// }
 
 			document.getElementById("addItem").addEventListener("click", function(){
 
@@ -110,6 +110,7 @@
 					cell2.innerHTML = document.getElementById('whatToDo').value;
 	    			cell3.innerHTML = document.getElementById('whenToDo').value;
 	    			cell4.innerHTML = document.getElementById('whereToDo').value;
+
 	    			row.addEventListener('click', function(e) {
 					    document.querySelectorAll('tr[selected]').forEach(function(item) {
 					        item.removeAttr('selected');
@@ -133,11 +134,11 @@
 				if (theRow > 0){
 
 					document.getElementById("myList").deleteRow(theRow);
-					document.getElementById('whatToMark').value = "";
+					// document.getElementById('whatToMark').value = "";
 					currentRow--;
 					itemNumber--;
 				}
-				selectedRow = 0;
+				// selectedRow = 0;
 			});
 
 			document.getElementById("markAsDone").addEventListener("click", function(){
@@ -151,10 +152,11 @@
 				if (theRow != 0){
 
 					table.rows[theRow].style.setProperty("text-decoration", "line-through");
-					document.getElementById('whatToMark').value = "";
+					table.rows[theRow].style.setProperty("opacity", "0.5");
+					// document.getElementById('whatToMark').value = "";
 				}
 
-				selectedRow = 0;
+				// selectedRow = 0;
 			});
 
 		</script>
